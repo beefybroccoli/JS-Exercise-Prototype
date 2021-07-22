@@ -103,7 +103,7 @@ Car.prototype.drive = function(distance) {
 // + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 Car.prototype.drive = function() {
   //return a string "I ran out of fuel at x miles!"
-  return `I ran out of fuel at ${this.odometer + this.tank * this*this.milesPerGallon} miles!`
+  return `I ran out of fuel at ${this.odometer + this.tank * this.milesPerGallon} miles!`
 }
 
 
@@ -151,3 +151,17 @@ module.exports = {
   Car,
   Baby
 }
+
+const data = [
+  {'name':'Morphin', 'age':1, 'favoriteToy':"gum"}
+  ,{'name':'Jerry', 'age':3, 'favoriteToy':"square box"}
+  ,{'name':'Dino', 'age':2, 'favoriteToy':"truck"}
+  ,{'name':'Tom', 'age':4, 'favoriteToy':"jellow"}];
+
+  console.log("");
+  data.forEach( (element) => {
+    console.log();
+    //console.log(`${element["name"]},${element["age"]},${element["favoriteToy"]}`);
+    const tempBaby = new Baby(element["name"],parseInt(element["age"]),element["favoriteToy"]);
+    console.log(tempBaby);
+  });
