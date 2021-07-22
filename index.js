@@ -80,8 +80,30 @@ samPerson.toString();
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car(model, milesPerGallon) {
+  this.model = model,
+  this.milesPerGallon = milesPerGallon,
+  this.tank = 0,
+  this.odometer = 0
+}
+
+// Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
+Car.prototype.fill = function(gallons){ this.tank += gallons; }
+
+// - STRETCH: Give cars ability to `.drive(distance)`. The distance driven:
+// + Should cause the `odometer` to go up.
+// + Should cause the the `tank` to go down taking `milesPerGallon` into account.
+Car.prototype.drive = function(distance) {
+  this.odometer += distance;
+  this.tank -= distance/this.milesPerGallon;
+}
+
+
+// - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
+// + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
+Car.prototype.drive = function() {
+  //return a string "I ran out of fuel at x miles!"
+  return `I ran out of fuel at ${this.odometer + this.tank * this*this.milesPerGallon} miles!`
 }
 
 
@@ -92,18 +114,26 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+  Person.call(this,name, age);
+  this.favoriteToy = favoriteToy;
 }
 
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
+
+const samBaby = new Baby("sam", 10, "boat");
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. this keyword is used for implicit binding to an object
+  2. this keyword is used for explicit bidng to an object
+  3. this keyword is used to refer to Windows
+  4. this keyword is used to describe object
 */
 
 
